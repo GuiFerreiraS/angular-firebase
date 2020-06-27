@@ -1,7 +1,7 @@
 import { TaskService } from './../task.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Task } from '../models/task.model';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-task-dialog',
@@ -10,20 +10,30 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class TaskDialogComponent implements OnInit {
 
+  dialogTitle = 'New Task';
   task: Task = {title: ''}
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<TaskDialogComponent>,
     private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
+    if (this.data) {
+      this.dialogTitle =  'Update Task'
+      this.task = this.data.task
+    }
   }
 
   onSave(): void {
-    this.taskService.create(this.task)
+    const operation: Promise<void> = 
+      (!this.data) 
+        ? this.taskService.create(this.task)
+        : this.taskService.update(this.task);
+
+    operation
       .then(() => {
-        console.log('Task created.');
         this.dialogRef.close();
       });
   }

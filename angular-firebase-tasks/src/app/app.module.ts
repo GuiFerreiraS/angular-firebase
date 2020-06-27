@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { importExpr } from '@angular/compiler/src/output/output_ast';
@@ -39,6 +40,7 @@ import { FormsModule } from '@angular/forms';
     AngularFirestoreModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatMenuModule,
     MatButtonModule,
     MatDialogModule,
     MatIconModule,

@@ -2,7 +2,7 @@ import { TaskService } from './../task.service';
 import { Task } from './../models/task.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 @Component({
@@ -19,19 +19,25 @@ export class TaskListComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private TaskService: TaskService
+    private taskService: TaskService
   ) { }
 
   ngOnInit(): void {
-    this.tasks$ = this.TaskService.tasks.valueChanges();
+    this.tasks$ = this.taskService.tasks.valueChanges();
   }
 
   onPerformTask(task: Task): void {
-    console.log(task)
+    task.done = !task.done;
+    this.taskService.update(task);
   }
 
-  showDialog(): void{
-    this.dialog.open(TaskDialogComponent);
+  showDialog(task?: Task): void{
+    const config: MatDialogConfig<any> = (task) ? {data: { task }} : null;
+    this.dialog.open(TaskDialogComponent, config);
+  }
+
+  onDelete(task: Task): void{
+    this.taskService.delete(task);
   }
   
 

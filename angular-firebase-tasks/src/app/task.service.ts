@@ -31,7 +31,7 @@ export class TaskService {
       });
   }
 
-  updade(task: Task): Promise<void> {
+  update(task: Task): Promise<void> {
     return this.tasks.doc<Task>(task.uid)
       .update(task);
   }
