@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatListModule } from '@angular/material/list';
 import { MatLineModule } from '@angular/material/core';
@@ -40,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     AngularFirestoreModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatProgressSpinnerModule,
     MatMenuModule,
     MatButtonModule,
     MatDialogModule,
