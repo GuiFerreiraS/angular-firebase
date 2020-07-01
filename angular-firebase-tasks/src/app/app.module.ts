@@ -38,7 +38,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     BrowserAnimationsModule,
     FormsModule,
     MatProgressSpinnerModule,
